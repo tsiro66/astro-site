@@ -1,0 +1,129 @@
+---
+const steps = [
+  { 
+    id: "strategy",
+    title: "Στρατηγική & Πλάνο", 
+    paragraph: "Δεν ξεκινάμε ποτέ χωρίς σχέδιο. Αναλύουμε τον ανταγωνισμό σας και ορίζουμε τη δομή που θα φέρει πωλήσεις. Κάθε pixel έχει σκοπό." 
+  },
+  { 
+    id: "design",
+    title: "Custom Design", 
+    paragraph: "Ξεχάστε τα έτοιμα templates. Σχεδιάζουμε μια μοναδική ταυτότητα που αντικατοπτρίζει το brand σας, με έμφαση στο UX και το στυλ της επιχείρησης σας." 
+  },
+  { 
+    id: "development",
+    title: "Ανάπτυξη", 
+    paragraph: "Γράφουμε κάθε γραμμή κώδικα με στόχο την απόδοση. Το αποτέλεσμα είναι ένα site που φορτώνει αστραπιαία, δεν πέφτει ποτέ και μετατρέπει επισκέπτες σε πελάτες." 
+  },
+  { 
+    id: "launch",
+    title: "Launch & Support", 
+    paragraph: "Μετά το launch, δεν εξαφανιζόμαστε. Είμαστε δίπλα σας για ό,τι χρειαστείτε — από μικρές αλλαγές μέχρι νέες σελίδες. Το site σας είναι ζωντανό, κι εμείς μαζί του." 
+  }
+];
+---
+
+<section class="py-24 px-6 font-syne">
+  <div class="max-w-6xl mx-auto">
+
+    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-16 italic">
+      <span class="text-violet-600">Διαδικασία</span>
+    </h2>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+      <!-- Buttons -->
+      <div class="flex flex-col gap-4">
+        {steps.map((step, index) => (
+          <div class="flex flex-col">
+
+            <button
+              data-step-target={step.id}
+              class="process-btn group flex items-center gap-6 p-6 border-4 border-black bg-white text-left transition-all hover:translate-x-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aria-selected:bg-volt aria-selected:translate-x-4 aria-selected:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+              aria-selected={index === 0 ? "true" : "false"}
+            >
+              <span class="text-2xl font-black opacity-30 group-aria-selected:opacity-100 italic shrink-0">
+                0{index + 1}
+              </span>
+              <span class="text-xl md:text-2xl font-bold tracking-tight">{step.title}</span>
+            </button>
+
+            <!-- Mobile inline panel -->
+            <div
+              data-mobile-panel={step.id}
+              class:list={[
+                "lg:hidden mt-5 border-4 border-black bg-white overflow-hidden transition-all duration-300",
+                index === 0 ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              ]}
+            >
+              <div class="p-6">
+                <h3 class="text-2xl font-bold mb-3 text-zinc-950 italic">Φάση 0{index + 1}</h3>
+                <p class="text-base font-bold leading-relaxed text-zinc-600">
+                  {step.paragraph}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop panel: all cards stacked in the same grid cell -->
+      <div class="hidden lg:block border-4 border-black bg-white shadow-[12px_12px_0px_0px]">
+        <div class="grid">
+          {steps.map((step, index) => (
+            <div
+              id={step.id}
+              class:list={[
+                "process-content col-start-1 row-start-1 px-12 py-16 flex flex-col justify-center transition-all duration-300",
+                index === 0 ? "opacity-100 visible" : "opacity-0 invisible"
+              ]}
+            >
+              <h3 class="text-4xl font-black mb-6 text-zinc-950 italic">Φάση 0{index + 1}</h3>
+              <p class="text-xl md:text-2xl leading-relaxed text-zinc-600">
+                {step.paragraph}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function initProcess() {
+    const buttons = document.querySelectorAll<HTMLElement>('.process-btn');
+    const contents = document.querySelectorAll<HTMLElement>('.process-content');
+    const mobilePanels = document.querySelectorAll<HTMLElement>('[data-mobile-panel]');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.stepTarget!;
+
+        buttons.forEach(b => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+
+        contents.forEach(content => {
+          const isTarget = content.id === targetId;
+          content.classList.toggle('opacity-0', !isTarget);
+          content.classList.toggle('invisible', !isTarget);
+          content.classList.toggle('opacity-100', isTarget);
+          content.classList.toggle('visible', isTarget);
+        });
+
+        mobilePanels.forEach(panel => {
+          const isTarget = panel.dataset.mobilePanel === targetId;
+          panel.classList.toggle('max-h-96', isTarget);
+          panel.classList.toggle('opacity-100', isTarget);
+          panel.classList.toggle('max-h-0', !isTarget);
+          panel.classList.toggle('opacity-0', !isTarget);
+        });
+      });
+    });
+  }
+
+  initProcess();
+  document.addEventListener('astro:after-swap', initProcess);
+</script>

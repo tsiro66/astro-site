@@ -1,0 +1,35 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'outline';
+  class?: string;
+}
+
+const { href, variant = 'primary', class: className, ...rest } = Astro.props;
+
+/**
+ * Προσθέσαμε:
+ * 1. active:translate-x-[2px] active:translate-y-[2px] -> Μετακινείται στη θέση της σκιάς
+ * 2. active:shadow-none -> Εξαφανίζεται η σκιά για να φανεί το "πάτημα"
+ */
+const baseStyles = "font-syne items-center justify-center px-8 py-3 font-bold text-lg border-2 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px] active:shadow-none cursor-pointer select-none";
+
+const variants = {
+  // The "Volt" Green button
+  primary: "bg-volt text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
+  // The dark button with white border
+  outline: "bg-white text-black border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+};
+
+const Element = href ? 'a' : 'button';
+---
+
+<Element 
+  href={href} 
+  class:list={[baseStyles, variants[variant], className]} 
+  {...rest}
+>
+  <slot />
+</Element>

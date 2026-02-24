@@ -1,0 +1,105 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const faqs = [
+  {
+    q: "Πόσο χρόνο διαρκεί η κατασκευή μιας ιστοσελίδας;",
+    a: "Aνάλογα με την πολυπλοκότητα του project και τις ανάγκες σας, μπορεί να διαρκέσει απο 2 εβδομάδες για μία απλή ιστοσελίδα μέχρι και 6 μήνες για ένα πολύπλοκο eshop.",
+  },
+  {
+    q: "Προσφέρετε υποστήριξη μετά την παράδοση;",
+    a: "Φυσικά. Παραμένουμε δίπλα σας για οποιαδήποτε τεχνική υποστήριξη ή αναβάθμιση χρειαστεί το ψηφιακό σας προϊόν.",
+  },
+  {
+    q: "Θα είναι η ιστοσελίδα μου λειτουργική σε κινητές συσκευές;",
+    a: "Κάθε project μας σχεδιάζεται με 'Mobile First' προσέγγιση, εξασφαλίζοντας τέλεια εμπειρία σε κάθε συσκευή.",
+  },
+  {
+    q: "Γιατί να επιλέξω custom σχεδιασμό αντί για έτοιμο template;",
+    a: "Ένα custom site σχεδιάζεται αποκλειστικά για τις ανάγκες σας. Σας δίνεται η δυνατότητα προσαρμογής σε κάθε μικρή λεπτομέρεια. Μπορούμε να δημιουργήσουμε κάτι εντελώς μοναδικό το οποίο θα ξεχωρίζει από τον ανταγωνισμό ενώ παράλληλα παρέχει δυνατότητα επέκτασης χωρίς περιορισμούς σε αντίθεση με τις έτοιμες λύσεις.",
+  },
+  {
+    q: "Θα μπορώ να ανανεώνω το περιεχόμενο μόνος μου;",
+    a: "Φυσικά. Κατασκευάζουμε το site σας με φιλικό περιβάλλον διαχείρισης, ώστε να μπορείτε να αλλάζετε κείμενα, φωτογραφίες και προϊόντα εύκολα, χωρίς να χρειάζεστε γνώσεις προγραμματισμού.",
+  },
+  {
+    q: "Περιλαμβάνεται το SEO στην κατασκευή;",
+    a: "Κάθε project παραδίδεται με 'Technical SEO' βελτιστοποίηση. Αυτό σημαίνει καθαρό κώδικα, μεγάλες ταχύτητες φόρτωσης και σωστή δομή, ώστε οι μηχανές αναζήτησης να σας βρίσκουν εύκολα.",
+  },
+  {
+    q: "Ποιο είναι το κόστος για ένα custom project;",
+    a: "Κάθε επιχείρηση έχει μοναδικές ανάγκες. Μετά την πρώτη μας επικοινωνία, θα λάβετε μια λεπτομερή προσφορά προσαρμοσμένη ακριβώς στο δικό σας πλάνο και προϋπολογισμό.",
+  },
+  {
+    q: "Τι τεχνολογίες χρησιμοποιείτε;",
+    a: "Δεν περιοριζόμαστε σε μία λύση. Επιλέγουμε το tech stack ανάλογα με τις ανάγκες σας—από Astro για κορυφαία ταχύτητα σε στατικά sites, μέχρι Next.js για σύνθετα web apps. Στόχος μας είναι πάντα το maximum performance και η μελλοντική επεκτασιμότητα.",
+  },
+];
+---
+
+<MainLayout>
+  <section class="pt-32 md:pt-48 px-6 font-syne">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-16">
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+          Συχνές <span>Ερωτήσεις</span>
+        </h2>
+
+        <span class="relative inline-block text-4xl">
+          <span class="relative z-10"
+            >Λύνουμε τις απορίες σας πριν καν τις σκεφτείτε.
+          </span>
+          <span
+            class="absolute bottom-1 left-0 w-full h-8 bg-violet-400 skew-x-1"
+          ></span>
+        </span>
+      </div>
+
+      <div class="space-y-6">
+        {
+          faqs.map((faq) => (
+            <details class="group border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] open:shadow-[10px_10px_0px_0px_rgba(124,58,237,1)] transition-all duration-300">
+              <summary class="list-none cursor-pointer p-6 md:p-8 flex items-center justify-between">
+                <h3 class="text-lg md:text-2xl font-bold tracking-tight leading-tight">
+                  {faq.q}
+                </h3>
+                <div class="relative w-8 h-8 shrink-0">
+                  <span class="absolute inset-0 w-full h-1 bg-black rotate-90 group-open:rotate-0 transition-transform duration-300" />
+                  <span class="absolute inset-0 w-full h-1 bg-black" />
+                </div>
+              </summary>
+              <div class="px-6 pb-8 md:px-8 md:pb-10 animate-fade-in">
+                <div class="p-6 bg-volt border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <p class="text-lg font-bold leading-relaxed text-black">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</MainLayout>
+<style>
+  /* Για να αφαιρέσουμε το default βέλος του browser */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+</style>

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  /* This creates the 'volt' utility name */
+  --color-volt: #D9FF30;
+  --color-pink: #FF30D9;
+  --color-blue: #30D9FF;
+  --font-syne: "Syne", sans-serif;
+}
+
+
+/* Make Syne font numbers inline */
+@layer base {
+  html {
+    font-variant-numeric: lining-nums;
+    /* Ή εναλλακτικά μέσω font-feature-settings */
+    font-feature-settings: "lnum" 1;
+  }
+}

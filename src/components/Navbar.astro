@@ -1,0 +1,124 @@
+---
+// src/components/Navbar.astro
+import Button from './Button.astro';
+
+const navLinks = [
+  { href: '/services', label: 'ΥΠΗΡΕΣΙΕΣ' },
+  { href: '/faq', label: 'ΕΡΩΤΗΣΕΙΣ' },
+  { href: '/contact', label: 'ΕΠΙΚΟΙΝΩΝΙΑ' },
+  { href: '/about', label: 'ΠΟΙΟΙ ΕΙΜΑΣΤΕ' },
+];
+---
+
+<header class="fixed top-0 w-full z-50 px-4 md:px-6 py-4 md:py-8">
+  <nav class="max-w-6xl mx-auto h-16 md:h-20 px-6 md:px-8 rounded-full border-2 border-black bg-white flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+    
+    <div class="flex items-center gap-2">
+      <a href="/" class="font-syne font-extrabold text-xl md:text-2xl tracking-tighter uppercase">FLUX</a>
+    </div>
+
+    <ul class="hidden lg:flex items-center gap-8">
+      {navLinks.map(link => (
+        <li>
+          <a href={link.href} class="font-syne font-bold text-sm hover:text-violet-600 transition-colors uppercase tracking-tight">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>     
+      
+    <div class="flex items-center gap-3">
+      <Button variant="primary" class="hidden lg:flex text-xs md:text-sm py-2 px-4">
+        Τηλεφώνησε μας
+      </Button>
+      
+      <button 
+        id="menu-toggle"
+        class="lg:hidden flex flex-col gap-1.5 p-2 border-2 border-black rounded-lg bg-volt shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[1px] active:translate-y-[1px] transition-all"
+        aria-label="Toggle Menu"
+      >
+        <span class="w-6 h-0.5 bg-black"></span>
+        <span class="w-6 h-0.5 bg-black"></span>
+        <span class="w-6 h-0.5 bg-black"></span>
+      </button>
+    </div>
+
+    <div 
+      id="mobile-menu" 
+      class="fixed inset-x-4 top-24 bg-white border-4 border-black p-8 rounded-3xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex-col gap-6 text-center hidden lg:hidden transition-all transform opacity-0 scale-95"
+    >
+      <ul class="flex flex-col gap-6">
+        {navLinks.map(link => (
+          <li>
+            <a href={link.href} class="mobile-link font-syne font-black text-2xl uppercase tracking-tighter hover:text-violet-600">
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <hr class="border-t-2 border-black opacity-10" />
+      <Button variant="primary" class="w-full justify-center text-lg">
+        Τηλεφώνησε μας
+      </Button>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-10 pointer-events-none">
+    <div 
+      id="scroll-line" 
+      class="h-2 bg-violet-500 w-0 rounded-full transition-all duration-75 ease-out"
+    ></div>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const line = document.getElementById('scroll-line');
+
+    // Toggle Mobile Menu
+    menuToggle?.addEventListener('click', () => {
+      const isHidden = mobileMenu?.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu?.classList.remove('hidden');
+        setTimeout(() => {
+          mobileMenu?.classList.add('flex', 'opacity-100', 'scale-100');
+          mobileMenu?.classList.remove('opacity-0', 'scale-95');
+        }, 10);
+      } else {
+        closeMenu();
+      }
+    });
+
+    function closeMenu() {
+      mobileMenu?.classList.replace('opacity-100', 'opacity-0');
+      mobileMenu?.classList.replace('scale-100', 'scale-95');
+      setTimeout(() => {
+        mobileMenu?.classList.add('hidden');
+        mobileMenu?.classList.remove('flex');
+      }, 200);
+    }
+
+    // Close menu when clicking a link
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Scroll Progress
+    const updateLine = () => {
+      if (line) {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        line.style.width = scrolled + "%";
+      }
+    };
+
+    window.addEventListener("scroll", updateLine);
+    updateLine();
+  }
+
+  // Astro-specific lifecycle fix
+  setupNavbar();
+  document.addEventListener("astro:after-swap", setupNavbar);
+</script>

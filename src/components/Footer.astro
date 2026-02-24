@@ -1,0 +1,46 @@
+---
+import Button from "./Button.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[#7b3afe] border-t-4 border-black font-syne mt-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
+    
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <a href="/" class="text-4xl font-extrabold tracking-tighter text-white uppercase">
+        Flux
+      </a>
+      <p class="text-white/90 font-medium text-center md:text-left max-w-xs">
+        E-shops, ιστοσελίδες και landing pages χωρίς συμβιβασμούς.
+      </p>
+    </div>
+
+    <nav class="flex flex-col sm:flex-row gap-6 sm:gap-16 text-white font-bold text-center md:text-left">
+      <div class="flex flex-col gap-4">
+        <a href="/services" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΥΠΗΡΕΣΙΕΣ</a>
+        <a href="/faq" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΕΡΩΤΗΣΕΙΣ</a>
+      </div>
+      <div class="flex flex-col gap-4">
+        <a href="/contact" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+        <a href="/about" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</a>
+      </div>
+    </nav>
+
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <p class="text-white font-bold text-lg">Έτοιμοι να ξεκινήσουμε;</p>
+      <Button variant="primary">
+        Τηλεφώνησέ μας
+      </Button>
+    </div>
+  </div>
+
+  <div class="border-t-4 border-black bg-[#6827e0]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-white text-sm font-bold">
+      <p>&copy; {currentYear} Flux. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy-policy" class="hover:text-volt transition-colors">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,17 +1,17 @@
 ---
-
+import Marquee from "../components/Marquee.astro";
+import Hero from "../components/sections/Hero.astro";
+import PainPoints from "../components/sections/PainPoints.astro";
+import Pillars from "../components/sections/Pillars.astro";
+import Process from "../components/sections/Process.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Flux | Premium Ιστοσελίδες & Eshops" lang="el">
+  <Hero />
+  <Marquee />
+  <PainPoints />
+  <Pillars />
+  <Process />
+</MainLayout>
