@@ -11,7 +11,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      assetsInlineLimit: 10240, // Inlines assets smaller than 10kb
+      assetsInlineLimit: 15000, // Inlines assets smaller than 10kb
     }
   },
   output:'server',
