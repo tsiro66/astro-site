@@ -1,12 +1,14 @@
 ---
-import '../styles/global.css'
-/* FLUX Performance Note: 
-  With no images, 'Syne' (your H1 font) IS your LCP. 
-  Ensure font-display: swap is set in global.css to prevent invisible text.
+import '../styles/global.css';
+
+/* FLUX Performance Strategy:
+  1. We keep Fontsource for the @font-face declarations.
+  2. We manually preload the '800' weight because it's used in your H1 (the LCP element).
 */
 import '@fontsource/syne/800.css';
 import '@fontsource/syne/700.css';
 import '@fontsource/syne/400.css';
+
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
@@ -32,6 +34,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <link 
+      rel="preload" 
+      href="/_astro/syne-latin-800-extrabold.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin="anonymous" 
+    />
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -48,7 +58,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <ClientRouter />
   </head>
   <body class="bg-zinc-200 antialiased selection:bg-black selection:text-white">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-black">
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:z-100 focus:p-4 focus:bg-white focus:text-black border-4 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
+    >
       Μετάβαση στο περιεχόμενο
     </a>
 
