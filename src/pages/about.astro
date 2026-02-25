@@ -107,10 +107,5 @@ const values = [
   .will-change-transform {
     will-change: transform, box-shadow;
   }
-  /* This reduces the work the browser has to do while the font is loading */
-h1, .rotate-2 {
-  font-display: optional; 
-  /* 'optional' is the fastest font-display setting for performance scores, 
-     though 'swap' is usually better for UX. Try it to see if it hits 100. */
-}
+  
 </style>

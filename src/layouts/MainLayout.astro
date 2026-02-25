@@ -63,7 +63,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
 
-    <ClientRouter />
+    <ClientRouter fallback="swap"/>
   </head>
   <body class="bg-zinc-200 antialiased selection:bg-black selection:text-white">
     <a
