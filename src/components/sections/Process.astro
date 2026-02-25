@@ -31,19 +31,17 @@ const steps = [
     </h2>
 
     <div class="grid lg:grid-cols-2 gap-12 items-start">
-      <div class="flex flex-col gap-4" role="tablist" aria-label="Βήματα διαδικασίας">
+      <div class="flex flex-col gap-4" aria-label="Βήματα διαδικασίας">
         {steps.map((step, index) => (
           <div class="flex flex-col">
             <button
-              role="tab"
-              id={`tab-${step.id}`}
-              aria-controls={`panel-${step.id}`}
+              id={`btn-${step.id}`}
+              aria-controls={`mobile-panel-${step.id} desktop-panel-${step.id}`}
               data-step-target={step.id}
-              class="process-btn group flex items-center gap-6 p-6 border-4 border-black bg-white text-left transition-all hover:translate-x-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aria-selected:bg-volt aria-selected:translate-x-4 aria-selected:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-violet-600 focus-visible:outline-4"
-              aria-selected={index === 0 ? "true" : "false"}
-              tabindex={index === 0 ? 0 : -1}
+              class="process-btn group flex items-center gap-6 p-6 border-4 border-black bg-white text-left transition-all hover:translate-x-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aria-expanded:bg-violet-600 aria-expanded:text-white aria-expanded:translate-x-4 aria-expanded:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-violet-600 focus-visible:outline-4"
+              aria-expanded={index === 0 ? "true" : "false"}
             >
-              <span class="text-2xl font-black opacity-30 group-aria-selected:opacity-100 italic shrink-0" aria-hidden="true">
+              <span class="text-2xl font-black group-aria-expanded:opacity-100 group-aria-expanded:text-white italic shrink-0" aria-hidden="true">
                 0{index + 1}
               </span>
               <span class="text-xl md:text-2xl font-bold tracking-tight">{step.title}</span>
@@ -51,8 +49,8 @@ const steps = [
 
             <div
               id={`mobile-panel-${step.id}`}
-              role="tabpanel"
-              aria-labelledby={`tab-${step.id}`}
+              role="region"
+              aria-labelledby={`btn-${step.id}`}
               data-mobile-panel={step.id}
               class:list={[
                 "lg:hidden mt-5 border-4 border-black bg-white overflow-hidden transition-all duration-300",
@@ -74,9 +72,9 @@ const steps = [
         <div class="grid">
           {steps.map((step, index) => (
             <div
-              id={`panel-${step.id}`}
-              role="tabpanel"
-              aria-labelledby={`tab-${step.id}`}
+              id={`desktop-panel-${step.id}`}
+              role="region"
+              aria-labelledby={`btn-${step.id}`}
               class:list={[
                 "process-content col-start-1 row-start-1 px-12 py-16 flex flex-col justify-center transition-all duration-300",
                 index === 0 ? "opacity-100 visible" : "opacity-0 invisible"
@@ -100,28 +98,27 @@ const steps = [
     const contents = document.querySelectorAll<HTMLElement>('.process-content');
     const mobilePanels = document.querySelectorAll<HTMLElement>('[data-mobile-panel]');
 
-    buttons.forEach((btn, idx) => {
+    buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetId = btn.dataset.stepTarget!;
 
         // Update Buttons
         buttons.forEach(b => {
-          b.setAttribute('aria-selected', 'false');
-          b.setAttribute('tabindex', '-1');
+          b.setAttribute('aria-expanded', 'false');
         });
-        btn.setAttribute('aria-selected', 'true');
-        btn.setAttribute('tabindex', '0');
+        btn.setAttribute('aria-expanded', 'true');
 
-        // Update Panels
+        // Update Desktop Panels
         contents.forEach(content => {
-          const isTarget = content.id === `panel-${targetId}`;
+          // Note: matched ID to the new desktop-panel setup
+          const isTarget = content.id === `desktop-panel-${targetId}`; 
           content.classList.toggle('opacity-0', !isTarget);
           content.classList.toggle('invisible', !isTarget);
           content.classList.toggle('opacity-100', isTarget);
           content.classList.toggle('visible', isTarget);
         });
 
-        // Update Mobile
+        // Update Mobile Panels
         mobilePanels.forEach(panel => {
           const isTarget = panel.dataset.mobilePanel === targetId;
           panel.classList.toggle('max-h-96', isTarget);
@@ -129,18 +126,6 @@ const steps = [
           panel.classList.toggle('max-h-0', !isTarget);
           panel.classList.toggle('opacity-0', !isTarget);
         });
-      });
-
-      // Keyboard navigation support
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-          (buttons[idx + 1] as HTMLElement)?.focus();
-          (buttons[idx + 1] as HTMLElement)?.click();
-        }
-        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-          (buttons[idx - 1] as HTMLElement)?.focus();
-          (buttons[idx - 1] as HTMLElement)?.click();
-        }
       });
     });
   }
