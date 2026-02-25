@@ -8,6 +8,9 @@ const navLinks = [
   { href: '/contact', label: 'ΕΠΙΚΟΙΝΩΝΙΑ' },
   { href: '/about', label: 'ΠΟΙΟΙ ΕΙΜΑΣΤΕ' },
 ];
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, ""); 
 ---
 
 <header class="fixed top-0 w-full z-50 px-4 lg:px-6 py-4 lg:py-8">
@@ -18,13 +21,24 @@ const navLinks = [
     </div>
 
     <ul class="hidden lg:flex items-center gap-8">
-      {navLinks.map(link => (
-        <li>
-          <a href={link.href} class="font-syne font-bold text-sm hover:text-violet-600 transition-colors uppercase tracking-tight">
-            {link.label}
-          </a>
-        </li>
-      ))}
+      {navLinks.map(link => {
+        const isActive = currentPath === link.href || (link.href === '/' && currentPath === '');
+        return (
+          <li>
+            <a 
+              href={link.href} 
+              class="font-syne font-bold text-sm hover:text-violet-600 transition-colors uppercase tracking-tight"
+            >
+              <span class="relative inline-block">
+                <span class="relative z-10">{link.label}</span>
+                {isActive && (
+                  <span class="absolute bottom-0 left-0 w-full h-3 bg-volt -rotate-1" />
+                )}
+              </span>
+            </a>
+          </li>
+        );
+      })}
     </ul>     
       
     <div class="flex items-center gap-3">
@@ -66,7 +80,7 @@ const navLinks = [
   <div class="max-w-6xl mx-auto px-10 pointer-events-none">
     <div 
       id="scroll-line" 
-      class="h-2 bg-violet-500 w-0 rounded-full transition-all duration-75 ease-out"
+      class="h-2 bg-pink w-0 rounded-full transition-all duration-75 ease-out"
     ></div>
   </div>
 </header>
@@ -78,7 +92,6 @@ const navLinks = [
     const mobileLinks = document.querySelectorAll('.mobile-link');
     const line = document.getElementById('scroll-line');
 
-    // Toggle Mobile Menu
     menuToggle?.addEventListener('click', () => {
       const isHidden = mobileMenu?.classList.contains('hidden');
       if (isHidden) {
@@ -101,10 +114,8 @@ const navLinks = [
       }, 200);
     }
 
-    // Close menu when clicking a link
     mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-    // Scroll Progress
     const updateLine = () => {
       if (line) {
         const winScroll = document.documentElement.scrollTop;
@@ -118,7 +129,6 @@ const navLinks = [
     updateLine();
   }
 
-  // Astro-specific lifecycle fix
   setupNavbar();
   document.addEventListener("astro:after-swap", setupNavbar);
 </script>

@@ -5,9 +5,11 @@ interface Props {
   href?: string;
   variant?: 'primary' | 'outline' | 'primaryDark' | 'outlineDark';
   class?: string;
+  type?: 'submit';
+  id?: string;
 }
 
-const { href, variant = 'primary', class: className, ...rest } = Astro.props;
+const { href, variant = 'primary', class: className, type, id, ...rest } = Astro.props;
 
 const baseStyles = "font-syne items-center justify-center px-8 py-3 font-bold text-lg border-2 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px] active:shadow-none cursor-pointer select-none";
 
@@ -26,7 +28,9 @@ const Element = href ? 'a' : 'button';
 
 <Element 
   href={href} 
-  class:list={[baseStyles, variants[variant], className]} 
+  class:list={[baseStyles, variants[variant], className]}
+  type={type}
+  id={id}
   {...rest}
 >
   <slot />
