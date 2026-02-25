@@ -5,6 +5,7 @@ import '@fontsource/syne/700.css';
 import '@fontsource/syne/400.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
 
 // 2. Define props (for dynamic titles and SEO)
 const { title = "Astro Template Store", lang = "en" } = Astro.props;
@@ -15,17 +16,20 @@ const { title = "Astro Template Store", lang = "en" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     </head>
   <body class="bg-zinc-200 antialiased">
-    
+    <div class="overflow-x-hidden w-full">
+
     <Navbar />
 
     <main>
       <slot />
     </main>
 
-   <Footer />
+    <Footer />
+    </div>
   </body>
 </html>

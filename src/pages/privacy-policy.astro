@@ -1,4 +1,10 @@
 ---
+import "../styles/global.css";
+import "@fontsource/syne/800.css";
+import "@fontsource/syne/700.css";
+import "@fontsource/syne/400.css";
+import Button from "../components/Button.astro";
+import Footer from "../components/Footer.astro";
 const lastUpdated = "24 Φεβρουαρίου 2025";
 
 const sections = [
@@ -9,8 +15,8 @@ const sections = [
     content: [
       "Συλλέγουμε μόνο τα δεδομένα που είναι απαραίτητα για να σας παρέχουμε τις υπηρεσίες μας. Αυτά περιλαμβάνουν:",
       "**Στοιχεία επικοινωνίας**: Όνομα, email, αριθμός τηλεφώνου — μόνο όταν τα παρέχετε εσείς μέσω της φόρμας επικοινωνίας.",
-      "**Τεχνικά δεδομένα**: Διεύθυνση IP, τύπος browser, λειτουργικό σύστημα, σελίδες που επισκεφτήκατε και χρόνος παραμονής — για ανάλυση απόδοσης του site."
-    ]
+      "**Τεχνικά δεδομένα**: Διεύθυνση IP, τύπος browser, λειτουργικό σύστημα, σελίδες που επισκεφτήκατε και χρόνος παραμονής — για ανάλυση απόδοσης του site.",
+    ],
   },
   {
     id: "usage",
@@ -21,8 +27,8 @@ const sections = [
       "**Επικοινωνία**: Απάντηση στα αιτήματά σας και αποστολή προσφορών που ζητήσατε.",
       "**Βελτίωση υπηρεσιών**: Ανάλυση της χρήσης του site για βελτίωση της εμπειρίας χρήστη.",
       "**Νομική υποχρέωση**: Συμμόρφωση με νομικές απαιτήσεις όπου απαιτείται.",
-      "Δεν πουλάμε, δεν ενοικιάζουμε και δεν μοιραζόμαστε τα δεδομένα σας με τρίτους για εμπορικούς σκοπούς. Ποτέ."
-    ]
+      "Δεν πουλάμε, δεν ενοικιάζουμε και δεν μοιραζόμαστε τα δεδομένα σας με τρίτους για εμπορικούς σκοπούς. Ποτέ.",
+    ],
   },
   {
     id: "storage",
@@ -32,8 +38,8 @@ const sections = [
       "Τα δεδομένα σας αποθηκεύονται σε ασφαλείς servers εντός της Ευρωπαϊκής Ένωσης, σε πλήρη συμμόρφωση με τον GDPR.",
       "**Κρυπτογράφηση**: Όλες οι μεταδόσεις δεδομένων γίνονται μέσω HTTPS/TLS.",
       "**Περίοδος διατήρησης**: Τα δεδομένα επικοινωνίας διατηρούνται για 3 χρόνια από την τελευταία επαφή.",
-      "**Πρόσβαση**: Μόνο εξουσιοδοτημένα μέλη της ομάδας μας έχουν πρόσβαση στα δεδομένα σας."
-    ]
+      "**Πρόσβαση**: Μόνο εξουσιοδοτημένα μέλη της ομάδας μας έχουν πρόσβαση στα δεδομένα σας.",
+    ],
   },
   {
     id: "rights",
@@ -43,10 +49,10 @@ const sections = [
       "Ως υποκείμενο δεδομένων στην ΕΕ, έχετε τα ακόλουθα δικαιώματα:",
       "**Δικαίωμα πρόσβασης**: Μπορείτε να ζητήσετε αντίγραφο των δεδομένων που διατηρούμε για εσάς.",
       "**Δικαίωμα διόρθωσης**: Μπορείτε να ζητήσετε τη διόρθωση ανακριβών δεδομένων.",
-      "**Δικαίωμα διαγραφής**: Μπορείτε να ζητήσετε τη διαγραφή των δεδομένων σας (\"δικαίωμα στη λήθη\").",
+      '**Δικαίωμα διαγραφής**: Μπορείτε να ζητήσετε τη διαγραφή των δεδομένων σας ("δικαίωμα στη λήθη").',
       "**Δικαίωμα φορητότητας**: Μπορείτε να ζητήσετε τα δεδομένα σας σε δομημένη, μηχαναγνώσιμη μορφή.",
-      "**Δικαίωμα εναντίωσης**: Μπορείτε να αντιταχθείτε στην επεξεργασία των δεδομένων σας ανά πάσα στιγμή."
-    ]
+      "**Δικαίωμα εναντίωσης**: Μπορείτε να αντιταχθείτε στην επεξεργασία των δεδομένων σας ανά πάσα στιγμή.",
+    ],
   },
   {
     id: "contact",
@@ -54,172 +60,210 @@ const sections = [
     title: "Επικοινωνία & Υπεύθυνος Δεδομένων",
     content: [
       "Για οποιοδήποτε ερώτημα σχετικά με την επεξεργασία των δεδομένων σας ή για την άσκηση των δικαιωμάτων σας, επικοινωνήστε μαζί μας:",
-      "**Email**: privacy@yourcompany.gr",
-      "**Ταχυδρομείο**: Οδός Παράδειγμα 1, 10000, Αθήνα",
+      "**Email**: info@flux-web.com",
+      // "**Ταχυδρομείο**: Οδός Παράδειγμα 1, 10000, Αθήνα",
       "**Προθεσμία απάντησης**: Απαντάμε σε όλα τα αιτήματα εντός 30 ημερών, σύμφωνα με τον GDPR.",
-      "Έχετε επίσης το δικαίωμα να υποβάλετε καταγγελία στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ) στο www.dpa.gr."
-    ]
-  }
+      "Έχετε επίσης το δικαίωμα να υποβάλετε καταγγελία στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ) στο www.dpa.gr.",
+    ],
+  },
 ];
 ---
 
-<!-- HEADER -->
-<header class="sticky top-0 z-50 bg-white border-b-4 border-black flex items-center justify-between px-6 py-4 font-syne">
-  <a href="/" class="text-xl font-black tracking-tight no-underline text-black">
-    your<span class="text-violet-600">agency</span>
-  </a>
-  <a
-    href="/"
-    class="inline-flex items-center gap-2 text-sm font-bold border-4 border-black px-4 py-2 text-black no-underline transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-volt hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-  >
-    ← Πίσω στο Home
-  </a>
-</header>
-
-<!-- HERO -->
-<div class="relative overflow-hidden border-b-4 border-black px-6 py-16 font-syne">
-  <div class="relative max-w-4xl mx-auto">
-    <div class="inline-block bg-volt border-4 border-black px-3 py-1 text-xs font-black tracking-widest uppercase mb-5">
-      Νομικό Έγγραφο
-    </div>
-    <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-6">
-      Πολιτική<br /><em class="text-violet-600">Απορρήτου</em>
-    </h1>
-    <div class="flex flex-wrap gap-3 items-center text-sm font-bold">
-      <span class="bg-black text-white border-4 border-black px-3 py-1.5">GDPR Compliant</span>
-      <span class="border-4 border-black px-3 py-1.5">Τελευταία ενημέρωση: {lastUpdated}</span>
-    </div>
-  </div>
-</div>
-
-<!-- MOBILE TOC -->
-<div class="lg:hidden border-b-4 border-black px-6 font-syne">
-  <button
-    id="tocToggle"
-    class="w-full flex items-center justify-between py-4 bg-transparent border-none cursor-pointer font-syne font-black text-sm tracking-widest uppercase text-black"
-  >
-    <span>Περιεχόμενα</span>
-    <span id="tocArrow" class="text-xl transition-transform duration-200">▾</span>
-  </button>
-  <div id="mobileTocList" class="hidden flex-col gap-1 pb-4">
-    {sections.map(s => (
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Πολιτική Απορρήτου - Flux Web Agency" />
+    <title>Πολιτική Απορρήτου | FLUX</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="text-black antialiased bg-zinc-200">
+    <header
+      class="sticky top-0 z-50 border-b-4 border-black flex items-center justify-between px-6 py-4 font-syne bg-white"
+    >
+      <Button variant="primary" href="/"> ← Πίσω </Button>
       <a
-        href={`#${s.id}`}
-        class="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
+        href="/"
+        class="text-3xl md:text-5xl font-black tracking-tight no-underline text-black"
       >
-        <span class="text-xs opacity-40 font-black">{s.number}</span>
-        {s.title}
+        FLUX
       </a>
-    ))}
-  </div>
-</div>
+    </header>
 
-<!-- PAGE LAYOUT -->
-<div class="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] font-syne">
-
-  <!-- DESKTOP SIDEBAR TOC -->
-  <aside class="hidden lg:block border-r-4 border-black px-6 py-8 sticky top-[73px] self-start max-h-[calc(100vh-73px)] overflow-y-auto">
-    <p class="text-xs font-black tracking-widest uppercase opacity-40 mb-5">Περιεχόμενα</p>
-    <ul class="list-none flex flex-col gap-1 p-0 m-0">
-      {sections.map(s => (
-        <li>
-          <a
-            href={`#${s.id}`}
-            data-toc={s.id}
-            class="toc-link flex items-center gap-2.5 px-3 py-2 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
+    <div
+      class="relative overflow-hidden border-b-4 border-black px-6 py-16 font-syne"
+    >
+      <div class="relative max-w-4xl mx-auto">
+        <div
+          class="inline-block bg-volt border-4 border-black px-3 py-1 text-xs font-bold tracking-widest uppercase mb-5"
+        >
+          Νομικό Έγγραφο
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-6"
+        >
+          Πολιτική<br /><em class="text-violet-600 font-normal">Απορρήτου</em>
+        </h1>
+        <div class="flex flex-wrap gap-3 items-center text-sm font-bold">
+          <span
+            class="bg-black text-white border-4 border-black px-3 py-1.5 font-bold"
+            >GDPR Compliant</span
           >
-            <span class="text-[0.7rem] opacity-40 font-black shrink-0">{s.number}</span>
-            {s.title}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="px-6 py-10 md:px-10 md:py-12">
-
-    <!-- Highlight box -->
-    <div class="flex items-start gap-4 border-4 border-black bg-volt px-6 py-5 mb-10">
-      <span class="text-2xl shrink-0">🔒</span>
-      <p class="text-sm font-bold leading-relaxed text-black">
-        Σεβόμαστε την ιδιωτικότητά σας. Αυτή η πολιτική εξηγεί με απλά λόγια τι δεδομένα συλλέγουμε, γιατί τα χρειαζόμαστε και πώς τα προστατεύουμε — χωρίς νομική γλώσσα και κρυφά γράμματα.
-      </p>
+          <span class="border-4 border-black px-3 py-1.5 font-bold"
+            >Τελευταία ενημέρωση: {lastUpdated}</span
+          >
+        </div>
+      </div>
     </div>
 
-    <!-- Sections -->
-    {sections.map(section => (
-      <section id={section.id} class="policy-section pb-10 mb-10 border-b-4 border-black last:border-b-0 last:mb-0">
-        <div class="flex items-start gap-3 mb-6">
-          <span class="bg-violet-600 text-white text-xs font-black px-2 py-1 shrink-0 mt-1">{section.number}</span>
-          <h2 class="text-2xl md:text-3xl font-black tracking-tight leading-tight">{section.title}</h2>
-        </div>
-        <div class="flex flex-col gap-3 sm:pl-11">
-          {section.content.map((para, i) => (
-            <p
-              class:list={[
-                "text-base leading-relaxed",
-                i === 0 ? "font-bold text-black" : "font-semibold text-zinc-600"
-              ]}
-              set:html={para.replace(/\*\*(.*?)\*\*/g, '<strong class="text-black font-black">$1</strong>')}
-            />
-          ))}
-        </div>
-      </section>
-    ))}
-
-  </main>
-</div>
-
-<!-- FOOTER -->
-<footer class="border-t-4 border-black px-6 py-8 flex flex-wrap items-center justify-between gap-4 font-syne">
-  <span class="text-sm font-bold opacity-50">© 2025 yourAgency. Όλα τα δικαιώματα διατηρούνται.</span>
-  <a href="/contact" class="text-sm font-bold text-black no-underline border-b-2 border-black pb-px transition-colors hover:text-violet-600 hover:border-violet-600">
-    Επικοινωνία
-  </a>
-</footer>
-
-<script>
-  // Mobile TOC toggle
-  const toggle = document.getElementById('tocToggle');
-  const list = document.getElementById('mobileTocList');
-  const arrow = document.getElementById('tocArrow');
-
-  toggle?.addEventListener('click', () => {
-    const isOpen = !list?.classList.contains('hidden');
-    list?.classList.toggle('hidden', isOpen);
-    list?.classList.toggle('flex', !isOpen);
-    if (arrow) arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
-  });
-
-  list?.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      list.classList.add('hidden');
-      list.classList.remove('flex');
-      if (arrow) arrow.style.transform = '';
-    });
-  });
-
-  // Active TOC link on scroll
-  const tocLinks = document.querySelectorAll<HTMLElement>('.toc-link');
-  const policySections = document.querySelectorAll('.policy-section');
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          tocLinks.forEach(link => {
-            const isActive = link.dataset.toc === entry.target.id;
-            link.classList.toggle('bg-black', isActive);
-            link.classList.toggle('text-white', isActive);
-            link.classList.toggle('border-black', isActive);
-            link.classList.toggle('border-transparent', !isActive);
-          });
+    <div class="lg:hidden border-b-4 border-black px-6 font-syne">
+      <button
+        id="tocToggle"
+        class="w-full flex items-center justify-between py-4 bg-transparent border-none cursor-pointer font-syne font-bold text-sm tracking-widest uppercase text-black"
+      >
+        <span>Περιεχόμενα</span>
+        <span id="tocArrow" class="text-xl transition-transform duration-200"
+          >▾</span
+        >
+      </button>
+      <div id="mobileTocList" class="hidden flex-col gap-1 pb-4">
+        {
+          sections.map((s) => (
+            <a
+              href={`#${s.id}`}
+              class="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
+            >
+              <span class="text-xs opacity-40 font-bold">
+                {s.number}
+              </span>
+              {s.title}
+            </a>
+          ))
         }
-      });
-    },
-    { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
-  );
+      </div>
+    </div>
 
-  policySections.forEach(s => observer.observe(s));
-</script>
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] font-syne">
+      <aside
+        class="hidden lg:block border-r-4 border-black px-6 py-8 sticky top-18.25 self-start max-h-[calc(100vh-73px)] overflow-y-auto"
+      >
+        <p
+          class="text-xs font-bold tracking-widest uppercase opacity-40 mb-5"
+        >
+          Περιεχόμενα
+        </p>
+        <ul class="list-none flex flex-col gap-1 p-0 m-0">
+          {
+            sections.map((s) => (
+              <li>
+                <a
+                  href={`#${s.id}`}
+                  data-toc={s.id}
+                  class="toc-link flex items-center gap-2.5 px-3 py-2 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
+                >
+                  <span class="text-[0.7rem] opacity-40 font-bold shrink-0">
+                    {s.number}
+                  </span>
+                  {s.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+
+      <main class="px-6 py-10 md:px-10 md:py-12">
+        <div
+          class="flex items-start gap-4 border-4 border-black bg-volt px-6 py-5 mb-10"
+        >
+          <p class="text-sm font-bold leading-relaxed text-black">
+            Σεβόμαστε την ιδιωτικότητά σας. Αυτή η πολιτική εξηγεί με απλά λόγια
+            τι δεδομένα συλλέγουμε, γιατί τα χρειαζόμαστε και πώς τα
+            προστατεύουμε — χωρίς νομική γλώσσα και κρυφά γράμματα.
+          </p>
+        </div>
+
+        {
+          sections.map((section) => (
+            <section
+              id={section.id}
+              class="policy-section pb-10 mb-10 border-b-4 border-black last:border-b-0 last:mb-0"
+            >
+              <div class="flex items-start gap-3 mb-6">
+                <span class="bg-violet-600 text-white text-xs font-bold px-2 py-1 shrink-0 mt-1">
+                  {section.number}
+                </span>
+                <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
+                  {section.title}
+                </h2>
+              </div>
+              <div class="flex flex-col gap-3 sm:pl-11">
+                {section.content.map((para, i) => (
+                  <p
+                    class:list={[
+                      "text-base leading-relaxed",
+                      i === 0
+                        ? "font-bold text-black"
+                        : "font-semibold text-zinc-600",
+                    ]}
+                    set:html={para.replace(
+                      /\*\*(.*?)\*\*/g,
+                      '<strong class="text-black font-bold">$1</strong>',
+                    )}
+                  />
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </main>
+    </div>
+
+    <Footer />
+    <script>
+      // Mobile TOC toggle
+      const toggle = document.getElementById("tocToggle");
+      const list = document.getElementById("mobileTocList");
+      const arrow = document.getElementById("tocArrow");
+
+      toggle?.addEventListener("click", () => {
+        const isOpen = !list?.classList.contains("hidden");
+        list?.classList.toggle("hidden", isOpen);
+        list?.classList.toggle("flex", !isOpen);
+        if (arrow) arrow.style.transform = isOpen ? "" : "rotate(180deg)";
+      });
+
+      list?.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          list.classList.add("hidden");
+          list.classList.remove("flex");
+          if (arrow) arrow.style.transform = "";
+        });
+      });
+
+      // Active TOC link on scroll
+      const tocLinks = document.querySelectorAll<HTMLElement>(".toc-link");
+      const policySections = document.querySelectorAll(".policy-section");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach((link) => {
+                const isActive = link.dataset.toc === entry.target.id;
+                link.classList.toggle("bg-black", isActive);
+                link.classList.toggle("text-white", isActive);
+                link.classList.toggle("border-black", isActive);
+                link.classList.toggle("border-transparent", !isActive);
+              });
+            }
+          });
+        },
+        { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+      );
+
+      policySections.forEach((s) => observer.observe(s));
+    </script>
+  </body>
+</html>
