@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css'
+/* FLUX Performance Note: 
+  With no images, 'Syne' (your H1 font) IS your LCP. 
+  Ensure font-display: swap is set in global.css to prevent invisible text.
+*/
 import '@fontsource/syne/800.css';
 import '@fontsource/syne/700.css';
 import '@fontsource/syne/400.css';
@@ -7,29 +11,55 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
 
-// 2. Define props (for dynamic titles and SEO)
-const { title = "Astro Template Store", lang = "en" } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "FLUX | Υπηρεσίες Υψηλής Απόδοσης", 
+  description = "Digital εμπειρίες χωρίς συμβιβασμούς στην ταχύτητα και τον σχεδιασμό." 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang="el" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
-    </head>
-  <body class="bg-zinc-200 antialiased">
-    <div class="overflow-x-hidden w-full">
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="GR" />
+    <meta name="geo.placename" content="Greece" />
 
-    <Navbar />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="el_GR" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
 
-    <main>
-      <slot />
-    </main>
+    <ClientRouter />
+  </head>
+  <body class="bg-zinc-200 antialiased selection:bg-black selection:text-white">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-black">
+      Μετάβαση στο περιεχόμενο
+    </a>
 
-    <Footer />
+    <div class="flex flex-col min-h-screen overflow-x-hidden w-full">
+      <Navbar />
+
+      <main id="main-content" class="flex-grow" role="main">
+        <slot />
+      </main>
+
+      <Footer />
     </div>
   </body>
 </html>

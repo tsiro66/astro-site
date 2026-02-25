@@ -9,18 +9,22 @@ const marqueeItems = [
 ];
 ---
 
-<div class="overflow-hidden border-y-4 border-black bg-zinc-950 py-2 md:py-4 -rotate-2 scale-105 my-12 font-syne">
+<div 
+  class="overflow-hidden border-y-4 border-black bg-zinc-950 py-2 md:py-4 -rotate-2 scale-105 my-20 font-syne select-none"
+  role="region" 
+  aria-label="Σημαντικές ανακοινώσεις"
+>
   <div class="flex whitespace-nowrap animate-marquee cursor-default">
     <div class="flex items-center">
       {marqueeItems.map((item) => (
-        <span class:list={["text-sm md:text-3xl font-black uppercase mx-2 md:mx-8", item.color, { italic: item.isItalic }]}>
+        <span class:list={["text-sm md:text-3xl font-black uppercase mx-4 md:mx-8 shrink-0", item.color, { italic: item.isItalic }]}>
           {item.text}
         </span>
       ))}
     </div>
     <div class="flex items-center" aria-hidden="true">
       {marqueeItems.map((item) => (
-        <span class:list={["text-sm md:text-3xl font-black uppercase mx-4 md:mx-8", item.color, { italic: item.isItalic }]}>
+        <span class:list={["text-sm md:text-3xl font-black uppercase mx-4 md:mx-8 shrink-0", item.color, { italic: item.isItalic }]}>
           {item.text}
         </span>
       ))}
@@ -30,29 +34,42 @@ const marqueeItems = [
 
 <style>
   :root {
-    --marquee-speed: 20s; /* Default desktop speed */
+    --marquee-speed: 30s; /* Slower desktop speed for readability */
   }
 
-  /* Faster speed for mobile devices */
   @media (max-width: 768px) {
     :root {
-      --marquee-speed: 10s; 
+      --marquee-speed: 15s; 
     }
   }
 
   .animate-marquee {
     display: flex;
     width: max-content;
-    /* Use the variable here */
     animation: marquee var(--marquee-speed) linear infinite;
+    /* GPU Acceleration */
+    will-change: transform;
   }
 
-  .animate-marquee:hover {
+  /* Pause on hover and focus for accessibility */
+  .animate-marquee:hover,
+  .animate-marquee:focus-within {
     animation-play-state: paused;
   }
 
+  /* Respect user system settings for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+      transform: none;
+      width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 </style>

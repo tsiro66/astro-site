@@ -61,7 +61,6 @@ const sections = [
     content: [
       "Για οποιοδήποτε ερώτημα σχετικά με την επεξεργασία των δεδομένων σας ή για την άσκηση των δικαιωμάτων σας, επικοινωνήστε μαζί μας:",
       "**Email**: info@flux-web.com",
-      // "**Ταχυδρομείο**: Οδός Παράδειγμα 1, 10000, Αθήνα",
       "**Προθεσμία απάντησης**: Απαντάμε σε όλα τα αιτήματα εντός 30 ημερών, σύμφωνα με τον GDPR.",
       "Έχετε επίσης το δικαίωμα να υποβάλετε καταγγελία στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (ΑΠΔΠΧ) στο www.dpa.gr.",
     ],
@@ -74,11 +73,11 @@ const sections = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Πολιτική Απορρήτου - Flux Web Agency" />
+    <meta name="description" content="Πολιτική Απορρήτου - Flux Web Agency. Μάθετε πώς προστατεύουμε τα δεδομένα σας σύμφωνα με τον GDPR." />
     <title>Πολιτική Απορρήτου | FLUX</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="text-black antialiased bg-zinc-200">
+  <body class="text-black antialiased bg-zinc-200 selection:bg-volt">
     <header
       class="sticky top-0 z-50 border-b-4 border-black flex items-center justify-between px-6 py-4 font-syne bg-white"
     >
@@ -110,24 +109,26 @@ const sections = [
             class="bg-black text-white border-4 border-black px-3 py-1.5 font-bold"
             >GDPR Compliant</span
           >
-          <span class="border-4 border-black px-3 py-1.5 font-bold"
-            >Τελευταία ενημέρωση: {lastUpdated}</span
+          <time datetime="2026-02-24" class="border-4 border-black px-3 py-1.5 font-bold"
+            >Τελευταία ενημέρωση: {lastUpdated}</time
           >
         </div>
       </div>
     </div>
 
-    <div class="lg:hidden border-b-4 border-black px-6 font-syne">
+    <div class="lg:hidden border-b-4 border-black px-6 font-syne sticky top-[77px] bg-zinc-200 z-40">
       <button
         id="tocToggle"
+        aria-expanded="false"
+        aria-controls="mobileTocList"
         class="w-full flex items-center justify-between py-4 bg-transparent border-none cursor-pointer font-syne font-bold text-sm tracking-widest uppercase text-black"
       >
         <span>Περιεχόμενα</span>
-        <span id="tocArrow" class="text-xl transition-transform duration-200"
+        <span id="tocArrow" class="text-xl transition-transform duration-200" aria-hidden="true"
           >▾</span
         >
       </button>
-      <div id="mobileTocList" class="hidden flex-col gap-1 pb-4">
+      <nav id="mobileTocList" class="hidden flex-col gap-1 pb-4">
         {
           sections.map((s) => (
             <a
@@ -141,39 +142,41 @@ const sections = [
             </a>
           ))
         }
-      </div>
+      </nav>
     </div>
 
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] font-syne">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] font-syne relative">
       <aside
-        class="hidden lg:block border-r-4 border-black px-6 py-8 sticky top-18.25 self-start max-h-[calc(100vh-73px)] overflow-y-auto"
+        class="hidden lg:block border-r-4 border-black px-6 py-8 sticky top-[100px] self-start max-h-[calc(100vh-100px)] overflow-y-auto"
       >
         <p
           class="text-xs font-bold tracking-widest uppercase opacity-40 mb-5"
         >
           Περιεχόμενα
         </p>
-        <ul class="list-none flex flex-col gap-1 p-0 m-0">
-          {
-            sections.map((s) => (
-              <li>
-                <a
-                  href={`#${s.id}`}
-                  data-toc={s.id}
-                  class="toc-link flex items-center gap-2.5 px-3 py-2 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
-                >
-                  <span class="text-[0.7rem] opacity-40 font-bold shrink-0">
-                    {s.number}
-                  </span>
-                  {s.title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <nav aria-label="Πλοήγηση εγγράφου">
+          <ul class="list-none flex flex-col gap-1 p-0 m-0">
+            {
+              sections.map((s) => (
+                <li>
+                  <a
+                    href={`#${s.id}`}
+                    data-toc={s.id}
+                    class="toc-link flex items-center gap-2.5 px-3 py-2 text-sm font-bold text-black no-underline border-2 border-transparent transition-all hover:bg-volt hover:border-black"
+                  >
+                    <span class="text-[0.7rem] opacity-40 font-bold shrink-0">
+                      {s.number}
+                    </span>
+                    {s.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
       </aside>
 
-      <main class="px-6 py-10 md:px-10 md:py-12">
+      <main class="px-6 py-10 md:px-10 md:py-12 bg-white">
         <div
           class="flex items-start gap-4 border-4 border-black bg-volt px-6 py-5 mb-10"
         >
@@ -188,10 +191,10 @@ const sections = [
           sections.map((section) => (
             <section
               id={section.id}
-              class="policy-section pb-10 mb-10 border-b-4 border-black last:border-b-0 last:mb-0"
+              class="policy-section pb-10 mb-10 border-b-4 border-black last:border-b-0 last:mb-0 scroll-mt-32"
             >
               <div class="flex items-start gap-3 mb-6">
-                <span class="bg-violet-600 text-white text-xs font-bold px-2 py-1 shrink-0 mt-1">
+                <span class="bg-violet-600 text-white text-xs font-bold px-2 py-1 shrink-0 mt-1" aria-hidden="true">
                   {section.number}
                 </span>
                 <h2 class="text-2xl md:text-3xl font-bold tracking-tight leading-tight">
@@ -221,49 +224,51 @@ const sections = [
     </div>
 
     <Footer />
+
     <script>
-      // Mobile TOC toggle
-      const toggle = document.getElementById("tocToggle");
-      const list = document.getElementById("mobileTocList");
-      const arrow = document.getElementById("tocArrow");
+      function initPrivacy() {
+        const toggle = document.getElementById("tocToggle");
+        const list = document.getElementById("mobileTocList");
+        const arrow = document.getElementById("tocArrow");
 
-      toggle?.addEventListener("click", () => {
-        const isOpen = !list?.classList.contains("hidden");
-        list?.classList.toggle("hidden", isOpen);
-        list?.classList.toggle("flex", !isOpen);
-        if (arrow) arrow.style.transform = isOpen ? "" : "rotate(180deg)";
-      });
-
-      list?.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", () => {
-          list.classList.add("hidden");
-          list.classList.remove("flex");
-          if (arrow) arrow.style.transform = "";
+        toggle?.addEventListener("click", () => {
+          const isHidden = list?.classList.contains("hidden");
+          list?.classList.toggle("hidden", !isHidden);
+          list?.classList.toggle("flex", isHidden);
+          toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+          if (arrow) arrow.style.transform = isHidden ? "rotate(180deg)" : "";
         });
-      });
 
-      // Active TOC link on scroll
-      const tocLinks = document.querySelectorAll<HTMLElement>(".toc-link");
-      const policySections = document.querySelectorAll(".policy-section");
+        const tocLinks = document.querySelectorAll<HTMLElement>(".toc-link, #mobileTocList a");
+        const policySections = document.querySelectorAll(".policy-section");
 
-      const observer = new IntersectionObserver(
-        (entries) => {
+        const observerOptions = {
+          rootMargin: "-20% 0px -70% 0px",
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
+              const id = entry.target.id;
               tocLinks.forEach((link) => {
-                const isActive = link.dataset.toc === entry.target.id;
-                link.classList.toggle("bg-black", isActive);
-                link.classList.toggle("text-white", isActive);
-                link.classList.toggle("border-black", isActive);
-                link.classList.toggle("border-transparent", !isActive);
+                const isActive = link.getAttribute('href') === `#${id}` || (link as HTMLElement).dataset.toc === id;
+                if (link.classList.contains('toc-link')) {
+                   link.classList.toggle("bg-black", isActive);
+                   link.classList.toggle("text-white", isActive);
+                   link.classList.toggle("border-black", isActive);
+                   link.classList.toggle("border-transparent", !isActive);
+                }
               });
             }
           });
-        },
-        { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
-      );
+        }, observerOptions);
 
-      policySections.forEach((s) => observer.observe(s));
+        policySections.forEach((s) => observer.observe(s));
+      }
+
+      initPrivacy();
+      document.addEventListener("astro:after-swap", initPrivacy);
     </script>
   </body>
 </html>

@@ -6,16 +6,14 @@ const services = [
     title: "Ιστοσελίδες",
     description:
       "Κατασκευάζουμε ιστοσελίδες για επιχειρήσεις και ιδιώτες. Είτε χρειάζεστε μια απλή ιστοσελίδα ή ένα δυναμικό blog έχουμε την εμπειρία και την τεχνογνωσία να δημιουργήσουμε κάτι ξεχωριστό που ανταποκρίνεται στις ανάγκες σας. Με έμφαση στο design, ταχύτητα και SEO.",
-    // Original Volt styling
     classes: "-rotate-5 bg-volt text-black",
     numberBox: "bg-white text-black group-hover:bg-black group-hover:text-white",
     border: "border-black/10",
   },
   {
-    title: "E-commerce",
+    title: "E-shops",
     description:
       "Θέλετε να ξεκινήσετε το δικό σας ηλεκτρονικό κατάστημα αλλά δεν ξέρετε από πού να αρχίσετε; Στην Flux αναλαμβάνουμε τα πάντα για εσάς. Από τον στρατηγικό σχεδιασμό και το UI/UX design, μέχρι τη διασύνδεση με τράπεζες και μεταφορικές εταιρείες. Εστιάστε στα προϊόντα σας και αφήστε σε εμάς το τεχνικό κομμάτι, εξασφαλίζοντας μια σταθερή, ασφαλή και αποδοτική online παρουσία.",
-    // Switched to Purple
     classes: "md:-translate-y-12 hover:md:-translate-y-14 bg-violet-600 text-white z-10",
     numberBox: "bg-white text-black group-hover:bg-volt",
     border: "border-white/20",
@@ -23,8 +21,7 @@ const services = [
   {
     title: "Custom Εφαρμογές",
     description:
-      "Μαζί με εσάς δημιουργούμε εξατομικευμένες εφαρμογές για την διαχείριση των κρίσιμων διαδικασιών της επιχείρησης σας. Στόχος μας η ψηφιακή αναβάθμιση που μεγιστοποιεί την απόδοση και την παραγωγικότητα της ομάδας σας, ακριβώς στα μέτρα σας.",
-    // Switched to White
+      "Μαζί με εσάς δημιουργούμε εξατομικευμένες εφαρμογές για τη διαχείριση των κρίσιμων διαδικασιών της επιχείρησής σας. Στόχος μας η ψηφιακή αναβάθμιση που μεγιστοποιεί την απόδοση και την παραγωγικότητα της ομάδας σας, ακριβώς στα μέτρα σας.",
     classes: "rotate-5 bg-white text-black",
     numberBox: "bg-white text-black group-hover:bg-volt",
     border: "border-black/10",
@@ -32,24 +29,24 @@ const services = [
 ];
 ---
 
-<MainLayout>
-  <section class="pt-32 md:pt-48 px-6 font-syne">
+<MainLayout title="Υπηρεσίες | FLUX">
+  <section class="pt-32 md:pt-48 px-6 font-syne" aria-labelledby="services-heading">
     <div class="max-w-6xl mx-auto">
       <div class="mb-16">
-        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-          Υπηρεσιες
-        </h2>
+        <h1 id="services-heading" class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+          Υπηρεσίες
+        </h1>
         <span class="relative inline-block text-4xl">
-          <span class="relative z-10 bg-volt px-2">Οι υπηρεσίες που παρέχουμε. </span>
+          <span class="relative z-10 bg-volt px-2 text-black">Οι υπηρεσίες που παρέχουμε.</span>
         </span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
         {
           services.map((service, index) => (
-            <div
+            <article
               class:list={[
-                "group border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 flex flex-col justify-between",
+                "group border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 flex flex-col justify-between transform-gpu will-change-transform",
                 service.classes,
               ]}
             >
@@ -59,12 +56,13 @@ const services = [
                     "w-12 h-12 border-4 border-black mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black text-lg transition-colors",
                     service.numberBox,
                   ]}
+                  aria-hidden="true"
                 >
                   0{index + 1}
                 </div>
-                <h3 class="text-2xl md:text-3xl font-bold mb-6 tracking-tight">
+                <h2 class="text-2xl md:text-3xl font-black mb-6 tracking-tight uppercase">
                   {service.title}
-                </h3>
+                </h2>
                 <p class="text-lg leading-snug">
                   {service.description}
                 </p>
@@ -76,24 +74,20 @@ const services = [
                   service.border,
                 ]}
               >
-                {/* Learn More
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg> */}
+                {/* SVG could go here */}
               </div>
-            </div>
+            </article>
           ))
         }
       </div>
     </div>
   </section>
 </MainLayout>
+
+<style>
+  /* GPU acceleration for tilted elements prevents pixel-blurring */
+  .transform-gpu {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+</style>

@@ -2,26 +2,31 @@
 import Button from "../Button.astro";
 ---
 
-<section class="py-20 px-4 font-syne">
-  <div class="max-w-6xl mx-auto border-4 border-black bg-white p-8 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-4xl">
+<section class="py-20 px-4 font-syne" aria-labelledby="pain-points-title">
+  <div class="max-w-6xl mx-auto border-4 border-black bg-white p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-[2.5rem]">
     
-    <div class="flex flex-col md:flex-row items-center gap-12">
+    <div class="flex flex-col md:flex-row items-center gap-12 text-center md:text-left">
       
       <div class="flex-1 space-y-6">
-        <span class="inline-block bg-volt border-2 border-black px-4 py-1 font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          Η Πραγματικότητα
-        </span>
-        
-        <h2 class="text-2xl md:text-4xl font-bold leading-tight text-black">
-          Το <span class="text-violet-600">53% των χρηστών</span> εγκαταλείπει μια σελίδα που αργεί πάνω από  <span class="bg-volt px-2">
-            3 δευτερόλεπτα.
+        <header>
+          <span class="inline-block bg-volt border-2 border-black px-4 py-1 font-bold uppercase tracking-wider text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4">
+            Η Πραγματικότητα
+          </span>
+          
+          <h2 id="pain-points-title" class="text-3xl md:text-5xl font-bold leading-[1.1] text-black tracking-tighter">
+            Το <strong class="text-violet-600 font-bold underline decoration-violet-200 underline-offset-4">53% των χρηστών</strong> εγκαταλείπει μια σελίδα που αργεί πάνω από 
+            <span class="relative inline-block ml-1">
+              <span class="relative z-10 px-2">3 δευτερόλεπτα.</span>
+              <span class="absolute inset-0 bg-volt -rotate-1" aria-hidden="true"></span>
             </span>
-        </h2>
+          </h2>
+        </header>
         
-        <p class="text-lg md:text-xl text-gray-800 font-medium">
-          Οι περισσότερες ελληνικές επιχειρήσεις "πνίγονται" σε βαριά WordPress sites και eshops που κολλάνε.
-          Αυτό σημαίνει χαμένους πελάτες και χαμένες ευκαιρίες.<br />
-           Στη Flux, χτίζουμε ταχύτατα websites και eshops, χωρις εκπτώσεις στο design. 
+        <p class="text-lg md:text-xl text-zinc-900 font-medium leading-relaxed">
+          Οι περισσότερες ελληνικές επιχειρήσεις "πνίγονται" σε βαριά WordPress sites και e-shops που κολλάνε.
+          Αυτό σημαίνει χαμένους πελάτες και χαμένες ευκαιρίες.
+          <br class="hidden md:block" />
+          Στη <span class="font-bold">Flux</span>, χτίζουμε ταχύτατα websites και e-shops, χωρίς εκπτώσεις στο design. 
         </p>
       </div>
 

@@ -1,36 +1,45 @@
 ---
-import '../styles/global.css'
-
+// src/components/Button.astro
 interface Props {
   href?: string;
   variant?: 'primary' | 'outline' | 'primaryDark' | 'outlineDark';
   class?: string;
-  type?: 'submit';
+  type?: 'submit' | 'button' | 'reset';
   id?: string;
+  external?: boolean;
 }
 
-const { href, variant = 'primary', class: className, type, id, ...rest } = Astro.props;
+const { 
+  href, 
+  variant = 'primary', 
+  class: className, 
+  type = 'button', 
+  id, 
+  external,
+  ...rest 
+} = Astro.props;
 
-const baseStyles = "font-syne items-center justify-center px-8 py-3 font-bold text-lg border-2 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[2px] active:translate-y-[2px] active:shadow-none cursor-pointer select-none";
+const baseStyles = "px-8 py-3 font-syne font-bold text-lg border-2 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none active:translate-x-[4px] active:translate-y-[4px] active:shadow-none cursor-pointer select-none focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet-600 focus-visible:ring-offset-2";
 
 const variants = {
-  // The "Volt" Green button
   primary: "bg-volt text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
   primaryDark: "bg-volt text-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] border-white",
-  // The dark button with white border
   outline: "bg-white text-black border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
   outlineDark: "bg-black text-white border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
-
 };
 
 const Element = href ? 'a' : 'button';
+const rel = external ? "noopener noreferrer" : undefined;
+const target = external ? "_blank" : undefined;
 ---
 
 <Element 
   href={href} 
   class:list={[baseStyles, variants[variant], className]}
-  type={type}
+  type={href ? undefined : type}
   id={id}
+  rel={rel}
+  target={target}
   {...rest}
 >
   <slot />

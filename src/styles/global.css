@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* This creates the 'volt' utility name */
   --color-volt: #D9FF30;
   --color-pink: #FF30D9;
   --color-blue: #30D9FF;
   --font-syne: "Syne", sans-serif;
 }
 
-
-/* Make Syne font numbers inline */
 @layer base {
   html {
+    /* Performance: Ensures the page doesn't jump when Syne loads */
+    font-family: var(--font-syne);
     font-variant-numeric: lining-nums;
-    /* Ή εναλλακτικά μέσω font-feature-settings */
     font-feature-settings: "lnum" 1;
+    
+    /* Accessibility & Design: Ensures crisp text on dark backgrounds */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Performance: Prevents 'overscroll' jank on mobile */
+    overscroll-behavior-y: none;
+    
   }
 }

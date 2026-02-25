@@ -2,47 +2,53 @@
 // src/components/sections/Pillars.astro
 ---
 
-<section class="py-24 px-6 font-syne">
+<section class="py-24 px-6 font-syne" aria-labelledby="pillars-heading">
   <div class="max-w-6xl mx-auto">
     
     <div class="mb-16 text-center sm:text-left">
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-950">
-        Γιατί <span class="text-violet-600 italic">διαφέρουμε  </span>από τον ανταγωνισμό?
+      <h2 id="pillars-heading" class="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-950">
+        Γιατί <span class="text-violet-600 italic">διαφέρουμε</span> από τον ανταγωνισμό;
       </h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       
-      <div class="group border-4 border-black p-8 bg-volt shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-        <div class="w-16 h-16 border-4 border-black bg-white mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] group-hover:bg-zinc-950 group-hover:text-white transition-colors">
+      <article class="group border-4 border-black p-8 bg-volt shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform">
+        <div class="w-16 h-16 border-4 border-black bg-white mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-zinc-950 group-hover:text-white transition-colors" aria-hidden="true">
             <span class="text-2xl font-black">01</span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">Αστραπιαία Ταχύτητα</h3>
-        <p class="text-lg leading-tight lining-nums">
+        <p class="text-lg leading-tight lining-nums text-black">
           100/100 Score στα Core Web Vitals. Οι σελίδες μας φορτώνουν πριν προλάβεις να πεις click.
         </p>
-      </div>
+      </article>
 
-      <div class="group border-4 border-black p-8 bg-violet-600 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-        <div class="w-16 h-16 border-4 border-black bg-white mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-volt transition-colors">
+      <article class="group border-4 border-black p-8 bg-violet-600 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform">
+        <div class="w-16 h-16 border-4 border-black bg-white mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-volt transition-colors" aria-hidden="true">
             <span class="text-2xl font-black text-black">02</span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter text-white">SEO από τον πυρήνα</h3>
-        <p class="text-lg leading-tight text-white/90">
+        <p class="text-lg leading-tight text-white">
           Δεν προσθέτουμε SEO μετά. Το χτίζουμε στη δομή για να σας βρίσκουν οι πελάτες σας οργανικά.
         </p>
-      </div>
+      </article>
 
-      <div class="group border-4 border-black p-8 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200">
-        <div class="w-16 h-16 border-4 border-black bg-volt mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-violet-600 group-hover:text-white transition-colors">
+      <article class="group border-4 border-black p-8 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform">
+        <div class="w-16 h-16 border-4 border-black bg-volt mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:bg-violet-600 group-hover:text-white transition-colors" aria-hidden="true">
             <span class="text-2xl font-black">03</span>
         </div>
         <h3 class="text-2xl font-black mb-4 uppercase tracking-tighter">Custom Design</h3>
-        <p class="text-lg leading-tight">
+        <p class="text-lg leading-tight text-zinc-900">
           Όχι έτοιμα templates που μοιάζουν με του ανταγωνιστή σας. Μοναδικό design για μοναδικές επιχειρήσεις.
         </p>
-      </div>
+      </article>
 
     </div>
   </div>
 </section>
+
+<style>
+  .will-change-transform {
+    will-change: transform, box-shadow;
+  }
+</style>

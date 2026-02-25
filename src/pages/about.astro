@@ -8,7 +8,6 @@ const values = [
     num: "01",
     title: "Ταχύτητα",
     desc: "Κάθε millisecond μετράει. Χτίζουμε με performance-first νοοτροπία για sites που φορτώνουν ακαριαία, κρατώντας τους επισκέπτες σας ακριβώς εκεί που τους θέλετε.",
-    // Purple Card
     classes: "bg-violet-600 text-white",
     numberBox: "bg-white text-black group-hover:bg-volt",
   },
@@ -16,16 +15,13 @@ const values = [
     num: "02",
     title: "Ειλικρίνεια",
     desc: "Δεν πουλάμε αέρα. Σου λέμε ακριβώς τι χρειάζεσαι, τι κοστίζει και πότε θα είναι έτοιμο. Χωρίς εκπλήξεις, χωρίς κρυφές χρεώσεις.",
-    // Volt Card
     classes: "bg-volt text-black",
-    numberBox:
-      "bg-white text-black group-hover:bg-black group-hover:text-white",
+    numberBox: "bg-white text-black group-hover:bg-black group-hover:text-white",
   },
   {
     num: "03",
     title: "Αποτέλεσμα",
     desc: "Δεν μας ενδιαφέρει μόνο το πώς φαίνεται — μας ενδιαφέρει το πώς αποδίδει. Κάθε απόφαση παίρνεται με γνώμονα τον στόχο σου.",
-    // White Card
     classes: "bg-white text-black",
     numberBox: "bg-white text-black group-hover:bg-volt",
   },
@@ -33,34 +29,26 @@ const values = [
 ---
 
 <MainLayout title="Ποιοι Είμαστε | Flux">
-  <section class="pt-32 md:pt-48 px-6 font-syne">
+  <section class="pt-32 md:pt-48 px-6 font-syne" aria-labelledby="about-heading">
     <div class="max-w-6xl mx-auto">
       <div class="mb-16">
-        <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+        <h1 id="about-heading" class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
           Ποιοι είμαστε
-        </h2>
-        <span
-          class="relative inline-block text-4xl md:text-5xl"
-        >
-          <span class="relative text-4xl z-10 bg-violet-400 px-2"
-            >Φτιάχνουμε το web σωστά.</span
-          >
+        </h1>
+        <span class="relative inline-block text-4xl md:text-5xl">
+          <span class="relative text-4xl z-10 bg-violet-400 px-2 text-black">Φτιάχνουμε το web σωστά.</span>
         </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 rotate-2">
-        <div
-          class="border-4 border-black bg-volt p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200"
-        >
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 rotate-2 transform-gpu">
+        <div class="border-4 border-black bg-volt p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform">
           <p class="text-xl md:text-2xl font-bold leading-snug tracking-tight">
             Η Flux δεν είναι απλώς ένα web agency. Είμαστε μανιακοί με την
             ταχύτητα, το design και την αποδοτικότητα — και το δείχνουμε με κάθε
             project που παραδίδουμε.
           </p>
         </div>
-        <div
-          class="border-4 border-black bg-white p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200"
-        >
+        <div class="border-4 border-black bg-white p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform">
           <p class="text-xl md:text-2xl font-bold leading-snug text-zinc-700">
             Ξεκινήσαμε από την απλή παρατήρηση ότι οι περισσότερες ιστοσελίδες
             στην ελληνική αγορά είναι αργές, άσχημες και ακριβές. Αποφασίσαμε να
@@ -72,32 +60,31 @@ const values = [
     </div>
   </section>
 
-  <section class="px-6 py-24 font-syne -rotate-2">
+  <section class="px-6 py-24 font-syne -rotate-2 transform-gpu" aria-labelledby="values-heading">
     <div class="max-w-6xl mx-auto">
-      <h3 class="text-3xl md:text-4xl font-bold tracking-tighter mb-12">
-        <span class="bg-violet-400 px-2">Τι μας οδηγεί</span>
-      </h3>
+      <h2 id="values-heading" class="text-3xl md:text-4xl font-bold tracking-tighter mb-12">
+        <span class="bg-violet-400 px-2 text-black">Τι μας οδηγεί</span>
+      </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {
           values.map((v) => (
-            <div
-              class:list={[
-                "group border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200",
+            <div class:list={[
+                "group border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 will-change-transform",
                 v.classes,
               ]}
             >
-              <div
-                class:list={[
+              <div class:list={[
                   "w-12 h-12 border-4 border-black mb-6 flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black text-lg transition-colors",
                   v.numberBox,
                 ]}
+                aria-hidden="true"
               >
                 {v.num}
               </div>
-              <h4 class="text-2xl md:text-3xl font-bold mb-4 tracking-tight">
+              <h3 class="text-2xl md:text-3xl font-bold mb-4 tracking-tight">
                 {v.title}
-              </h4>
+              </h3>
               <p class="text-lg leading-snug">{v.desc}</p>
             </div>
           ))
@@ -105,21 +92,19 @@ const values = [
       </div>
     </div>
   </section>
-  <div class="rotate-2">  
+
+  <div class="rotate-2 transform-gpu overflow-hidden">  
     <CTA />
   </div>
 </MainLayout>
 
 <style>
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+  /* Keeps text crisp during rotations and animations */
+  .transform-gpu {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
-  .animate-marquee {
-    animation: marquee 20s linear infinite;
+  .will-change-transform {
+    will-change: transform, box-shadow;
   }
 </style>

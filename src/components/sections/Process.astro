@@ -8,7 +8,7 @@ const steps = [
   { 
     id: "design",
     title: "Custom Design", 
-    paragraph: "Ξεχάστε τα έτοιμα templates. Σχεδιάζουμε μια μοναδική ταυτότητα που αντικατοπτρίζει το brand σας, με έμφαση στο UX και το στυλ της επιχείρησης σας." 
+    paragraph: "Ξεχάστε τα έτοιμα templates. Σχεδιάζουμε μια μοναδική ταυτότητα που αντικατοπτρίζει το brand σας, με έμφαση στο UX και το στυλ της επιχείρησής σας." 
   },
   { 
     id: "development",
@@ -23,33 +23,36 @@ const steps = [
 ];
 ---
 
-<section class="py-24 px-6 font-syne">
+<section class="py-24 px-6 font-syne" aria-labelledby="process-title">
   <div class="max-w-6xl mx-auto">
 
-    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-16 italic">
+    <h2 id="process-title" class="text-4xl md:text-6xl font-bold tracking-tighter mb-16 italic">
       <span class="text-violet-600">Διαδικασία</span>
     </h2>
 
     <div class="grid lg:grid-cols-2 gap-12 items-start">
-
-      <!-- Buttons -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4" role="tablist" aria-label="Βήματα διαδικασίας">
         {steps.map((step, index) => (
           <div class="flex flex-col">
-
             <button
+              role="tab"
+              id={`tab-${step.id}`}
+              aria-controls={`panel-${step.id}`}
               data-step-target={step.id}
-              class="process-btn group flex items-center gap-6 p-6 border-4 border-black bg-white text-left transition-all hover:translate-x-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aria-selected:bg-volt aria-selected:translate-x-4 aria-selected:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+              class="process-btn group flex items-center gap-6 p-6 border-4 border-black bg-white text-left transition-all hover:translate-x-2 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] aria-selected:bg-volt aria-selected:translate-x-4 aria-selected:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-violet-600 focus-visible:outline-4"
               aria-selected={index === 0 ? "true" : "false"}
+              tabindex={index === 0 ? 0 : -1}
             >
-              <span class="text-2xl font-black opacity-30 group-aria-selected:opacity-100 italic shrink-0">
+              <span class="text-2xl font-black opacity-30 group-aria-selected:opacity-100 italic shrink-0" aria-hidden="true">
                 0{index + 1}
               </span>
               <span class="text-xl md:text-2xl font-bold tracking-tight">{step.title}</span>
             </button>
 
-            <!-- Mobile inline panel -->
             <div
+              id={`mobile-panel-${step.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${step.id}`}
               data-mobile-panel={step.id}
               class:list={[
                 "lg:hidden mt-5 border-4 border-black bg-white overflow-hidden transition-all duration-300",
@@ -58,36 +61,35 @@ const steps = [
             >
               <div class="p-6">
                 <h3 class="text-2xl font-bold mb-3 text-zinc-950 italic">Φάση 0{index + 1}</h3>
-                <p class="text-base font-bold leading-relaxed text-zinc-600">
+                <p class="text-base font-bold leading-relaxed text-zinc-600 italic">
                   {step.paragraph}
                 </p>
               </div>
             </div>
-
           </div>
         ))}
       </div>
 
-      <!-- Desktop panel: all cards stacked in the same grid cell -->
       <div class="hidden lg:block border-4 border-black bg-white shadow-[12px_12px_0px_0px]">
         <div class="grid">
           {steps.map((step, index) => (
             <div
-              id={step.id}
+              id={`panel-${step.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${step.id}`}
               class:list={[
                 "process-content col-start-1 row-start-1 px-12 py-16 flex flex-col justify-center transition-all duration-300",
                 index === 0 ? "opacity-100 visible" : "opacity-0 invisible"
               ]}
             >
               <h3 class="text-4xl font-black mb-6 text-zinc-950 italic">Φάση 0{index + 1}</h3>
-              <p class="text-xl md:text-2xl leading-relaxed text-zinc-600">
+              <p class="text-xl md:text-2xl leading-relaxed text-zinc-600 italic">
                 {step.paragraph}
               </p>
             </div>
           ))}
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -98,21 +100,28 @@ const steps = [
     const contents = document.querySelectorAll<HTMLElement>('.process-content');
     const mobilePanels = document.querySelectorAll<HTMLElement>('[data-mobile-panel]');
 
-    buttons.forEach(btn => {
+    buttons.forEach((btn, idx) => {
       btn.addEventListener('click', () => {
         const targetId = btn.dataset.stepTarget!;
 
-        buttons.forEach(b => b.setAttribute('aria-selected', 'false'));
+        // Update Buttons
+        buttons.forEach(b => {
+          b.setAttribute('aria-selected', 'false');
+          b.setAttribute('tabindex', '-1');
+        });
         btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('tabindex', '0');
 
+        // Update Panels
         contents.forEach(content => {
-          const isTarget = content.id === targetId;
+          const isTarget = content.id === `panel-${targetId}`;
           content.classList.toggle('opacity-0', !isTarget);
           content.classList.toggle('invisible', !isTarget);
           content.classList.toggle('opacity-100', isTarget);
           content.classList.toggle('visible', isTarget);
         });
 
+        // Update Mobile
         mobilePanels.forEach(panel => {
           const isTarget = panel.dataset.mobilePanel === targetId;
           panel.classList.toggle('max-h-96', isTarget);
@@ -120,6 +129,18 @@ const steps = [
           panel.classList.toggle('max-h-0', !isTarget);
           panel.classList.toggle('opacity-0', !isTarget);
         });
+      });
+
+      // Keyboard navigation support
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          (buttons[idx + 1] as HTMLElement)?.focus();
+          (buttons[idx + 1] as HTMLElement)?.click();
+        }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          (buttons[idx - 1] as HTMLElement)?.focus();
+          (buttons[idx - 1] as HTMLElement)?.click();
+        }
       });
     });
   }

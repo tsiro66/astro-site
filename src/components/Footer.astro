@@ -4,11 +4,13 @@ import Button from "./Button.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-[#7b3afe] border-t-4 border-black font-syne mt-24">
+<footer class="bg-violet-600 border-t-4 border-black font-syne mt-24" aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="sr-only">Footer</h2>
+  
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
     
     <div class="flex flex-col items-center md:items-start gap-4">
-      <a href="/" class="text-4xl font-extrabold tracking-tighter text-white uppercase">
+      <a href="/" class="text-4xl font-extrabold tracking-tighter text-white uppercase focus-visible:outline-volt">
         Flux
       </a>
       <p class="text-white/90 font-medium text-center md:text-left max-w-xs">
@@ -16,30 +18,37 @@ const currentYear = new Date().getFullYear();
       </p>
     </div>
 
-    <nav class="flex flex-col sm:flex-row gap-6 sm:gap-16 text-white font-bold text-center md:text-left">
-      <div class="flex flex-col gap-4">
-        <a href="/services" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΥΠΗΡΕΣΙΕΣ</a>
-        <a href="/faq" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΕΡΩΤΗΣΕΙΣ</a>
-      </div>
-      <div class="flex flex-col gap-4">
-        <a href="/contact" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΕΠΙΚΟΙΝΩΝΙΑ</a>
-        <a href="/about" class="hover:text-volt transition-colors uppercase text-sm tracking-wide">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</a>
+    <nav class="flex flex-col gap-4 text-white font-bold text-center md:text-left" aria-label="Footer Navigation">
+      <p class="uppercase text-sm tracking-wide opacity-80">Πλοηγηση</p>
+      <div class="flex flex-col gap-3">
+        <a href="/services" class="hover:text-volt transition-colors uppercase text-sm tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-volt">ΥΠΗΡΕΣΙΕΣ</a>
+        <a href="/faq" class="hover:text-volt transition-colors uppercase text-sm tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-volt">ΕΡΩΤΗΣΕΙΣ</a>
+        <a href="/contact" class="hover:text-volt transition-colors uppercase text-sm tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-volt">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+        <a href="/about" class="hover:text-volt transition-colors uppercase text-sm tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-volt">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</a>
       </div>
     </nav>
 
+    <div class="flex flex-col items-center md:items-start gap-4 text-white font-bold">
+      <p class="uppercase text-sm tracking-wide opacity-80">Επικοινωνια</p>
+      <div class="flex flex-col items-center md:items-start gap-3">
+        <a href="mailto:info@flux-web.com" class="hover:text-volt transition-colors text-lg tracking-tight">info@flux-web.com</a>
+        <a href="tel:+302100000000" class="hover:text-volt transition-colors text-lg tracking-tight">+30 210 XX XX XXX</a>
+      </div>
+    </div>
+
     <div class="flex flex-col items-center md:items-start gap-4">
       <p class="text-white font-bold text-lg">Έτοιμοι να ξεκινήσουμε;</p>
-      <Button variant="primary">
-        Τηλεφώνησέ μας
+      <Button variant="primary" href="/contact">
+        Ξεκινάμε
       </Button>
     </div>
   </div>
 
-  <div class="border-t-4 border-black bg-[#6827e0]">
+  <div class="border-t-4 border-black bg-violet-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-white text-sm font-bold">
-      <p>&copy; {currentYear} Flux. All rights reserved.</p>
+      <p>&copy; {currentYear} Flux. Κατασκευή ιστοσελίδων.</p>
       <div class="flex gap-6">
-        <a href="privacy-policy" class="hover:text-volt transition-colors">Privacy Policy</a>
+        <a href="/privacy-policy" class="hover:text-volt transition-colors outline-none focus-visible:underline">Privacy Policy</a>
       </div>
     </div>
   </div>
