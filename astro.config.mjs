@@ -9,10 +9,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://www.flux-web.com/',
   vite: {
-    plugins: [tailwindcss()],
-    build: {
-      assetsInlineLimit: 15000, // Inlines assets smaller than 10kb
-    }
+    plugins: [tailwindcss()]
   },
   output:'server',
   adapter: vercel(),

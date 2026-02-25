@@ -7,6 +7,13 @@
   --font-syne: "Syne", sans-serif;
 }
 
+@font-face {
+  font-family: 'Syne';
+  src: url('/fonts/syne-800.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
 @layer base {
   html {
     /* Performance: Ensures the page doesn't jump when Syne loads */
