@@ -44,12 +44,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
 
-    <!--
-      Preload the fonts that appear above the fold.
-      800 Latin + Greek = your H1 (LCP element).
-      700 Latin = Navbar.
-      These now load in parallel with the HTML, not after CSS is parsed.
-    -->
     <link rel="preload" href="/fonts/syne-v24-greek_latin-700.woff2"   as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/syne-v24-greek_latin-800.woff2"   as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/syne-v24-greek_latin-regular.woff2"   as="font" type="font/woff2" crossorigin />
