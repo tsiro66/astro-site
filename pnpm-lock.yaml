@@ -11,9 +11,6 @@ importers:
       '@astrojs/vercel':
         specifier: ^9.0.4
         version: 9.0.4(astro@5.17.3(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.58.0)(typescript@5.9.3))(rollup@4.58.0)
-      '@fontsource/syne':
-        specifier: ^5.2.7
-        version: 5.2.7
       '@tailwindcss/vite':
         specifier: ^4.2.0
         version: 4.2.0(vite@6.4.1(jiti@2.6.1)(lightningcss@1.31.1))
@@ -386,9 +383,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource/syne@5.2.7':
-    resolution: {integrity: sha512-OgWgLPSbieiSfdFXgMs0l/rspIFzVoDZxw8wKj15n39epRqO5+Uv36c0MXNDcw2GuK/TIBgpC9G8VAgs+bVm7A==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -2431,8 +2425,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.3':
     optional: true
-
-  '@fontsource/syne@5.2.7': {}
 
   '@img/colour@1.0.0':
     optional: true
