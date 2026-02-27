@@ -39,9 +39,23 @@ const faqs = [
     a: "Δεν περιοριζόμαστε σε μία λύση. Επιλέγουμε το tech stack ανάλογα με τις ανάγκες σας—από Astro για κορυφαία ταχύτητα σε στατικά sites, μέχρι Next.js για σύνθετα web apps. Στόχος μας είναι πάντα το maximum performance και η μελλοντική επεκτασιμότητα.",
   },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a,
+    },
+  })),
+};
 ---
 
 <MainLayout title="Συχνές Ερωτήσεις | Flux">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} slot="head" />
   <section
     class="pt-32 md:pt-48 px-6 font-syne overflow-hidden"
     aria-labelledby="faq-heading"
