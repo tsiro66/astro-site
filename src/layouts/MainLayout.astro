@@ -1,11 +1,5 @@
 ---
 import "../styles/global.css";
-
-// Remove the @fontsource CSS imports — we'll declare @font-face manually in global.css
-// import "@fontsource/syne/800.css";  ← DELETE
-// import "@fontsource/syne/700.css";  ← DELETE
-// import "@fontsource/syne/400.css";  ← DELETE
-
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
@@ -16,11 +10,43 @@ interface Props {
 }
 
 const {
-  title = "FLUX | Ιστοσελίδες και E-shops με ταχύτητα και design.",
-  description = "Digital εμπειρίες χωρίς συμβιβασμούς στην ταχύτητα και τον σχεδιασμό.",
+  title = "FLUX | Κατασκευή Ιστοσελίδων & E-shops - Premium Design & Ταχύτητα",
+  description = "Εξειδικευμένη κατασκευή ιστοσελίδων και e-shops στην Ελλάδα. Εστιάζουμε στο Accessibility, το SEO και το High-End Design με Next.js και Astro.",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Schema.org για LocalBusiness - Βοηθάει στο SEO στην Ελλάδα
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "FLUX Web",
+  "image": "https://www.flux-web.com/og-image.jpg", // Βάλε ένα link για το logo/banner σου
+  "@id": "https://www.flux-web.com",
+  "url": "https://www.flux-web.com",
+  "telephone": "+30XXXXXXXXXX", // Προαιρετικά, αν έχεις επαγγελματικό τηλέφωνο
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "", 
+    "addressLocality": "Athens", // Ή την πόλη σου
+    "postalCode": "",
+    "addressCountry": "GR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.9838, // Συντεταγμένες Αθήνας (παράδειγμα)
+    "longitude": 23.7275
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/your-profile" // Τα social media σου
+  ]
+};
 ---
 
 <!doctype html>
@@ -40,13 +66,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="el_GR" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/og-image.jpg', Astro.url)} /> <link rel="preload" href="/fonts/syne-v24-greek_latin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/syne-v24-greek_latin-800.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/syne-v24-greek_latin-regular.woff2" as="font" type="font/woff2" crossorigin />
 
-    <link rel="preload" href="/fonts/syne-v24-greek_latin-700.woff2"   as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/syne-v24-greek_latin-800.woff2"   as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/syne-v24-greek_latin-regular.woff2"   as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 
     <ClientRouter fallback="swap" />
   </head>
