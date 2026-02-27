@@ -19,24 +19,40 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // Schema.org για LocalBusiness - Βοηθάει στο SEO στην Ελλάδα
 const schema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "WebDesignService",
   "name": "FLUX Web",
   // "image": "https://www.flux-web.com/og-image.jpg",
   "@id": "https://www.flux-web.com",
   "url": "https://www.flux-web.com",
   // "telephone": "+30XXXXXXXXXX",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "", 
-    "addressLocality": "Athens",
-    "postalCode": "",
+    "streetAddress": "Κέντρο", 
+    "addressLocality": "Patras",
+    "addressRegion": "Achaia",
+    "postalCode": "26221",
     "addressCountry": "GR"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 37.9838,
-    "longitude": 23.7275
+    "latitude": 38.2466,
+    "longitude": 21.7346
   },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Patras"
+    },
+    {
+      "@type": "State",
+      "name": "Achaia"
+    },
+    {
+      "@type": "Country",
+      "name": "Greece"
+    }
+  ],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
